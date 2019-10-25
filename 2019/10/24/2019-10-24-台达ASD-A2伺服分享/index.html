@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="ASD-A2,PR_mode,PTP," />
+  <meta name="keywords" content="ASDA-A2,PR_mode,PTP," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="知识点PR模式">
-<meta name="keywords" content="ASD-A2,PR_mode,PTP">
+<meta name="description" content="前言 台达ASDA-A2伺服作为笔者个人推荐比较高的产品。在市场已经有不少的使用率，当然作为第一代的Smart Servo，它也能满足很多的单轴控制和多轴的协调。如今A3还有B3已经上市了，M-R这款因为产品的本身局限，在此不错过多的讲解。A2利用好PR模式，可以把PLC的程序进行简化处理，甚至把PLC直接省去。（笔者我做过几个这样的项目，都是只有触摸屏和A2伺服。） 今天就给大家带来关于ASD-">
+<meta name="keywords" content="ASDA-A2,PR_mode,PTP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="台达ASD-A2伺服分享">
+<meta property="og:title" content="台达ASDA-A2伺服分享">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;24&#x2F;2019-10-24-%E5%8F%B0%E8%BE%BEASD-A2%E4%BC%BA%E6%9C%8D%E5%88%86%E4%BA%AB&#x2F;index.html">
 <meta property="og:site_name" content="TomatoTor">
-<meta property="og:description" content="知识点PR模式">
+<meta property="og:description" content="前言 台达ASDA-A2伺服作为笔者个人推荐比较高的产品。在市场已经有不少的使用率，当然作为第一代的Smart Servo，它也能满足很多的单轴控制和多轴的协调。如今A3还有B3已经上市了，M-R这款因为产品的本身局限，在此不错过多的讲解。A2利用好PR模式，可以把PLC的程序进行简化处理，甚至把PLC直接省去。（笔者我做过几个这样的项目，都是只有触摸屏和A2伺服。） 今天就给大家带来关于ASD-">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-10-23T16:31:36.693Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;smartservo.org&#x2F;wp-content&#x2F;uploads&#x2F;Evernote-Camera-Roll-20160607-110158_thumb.png">
+<meta property="og:updated_time" content="2019-10-24T03:13:55.514Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;smartservo.org&#x2F;wp-content&#x2F;uploads&#x2F;Evernote-Camera-Roll-20160607-110158_thumb.png">
 
 
 
@@ -124,7 +126,7 @@
 
 
 
-  <title>台达ASD-A2伺服分享 | TomatoTor</title>
+  <title>台达ASDA-A2伺服分享 | TomatoTor</title>
   
 
 
@@ -258,7 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">台达ASD-A2伺服分享</h1>
+          <h1 class="post-title" itemprop="name headline">台达ASDA-A2伺服分享</h1>
         
 
         <div class="post-meta">
@@ -308,7 +310,47 @@
       
 
       
-        <h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a><strong><em>知识点</em></strong></h1><p>PR模式</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a><strong>前言</strong></h1><hr>
+<p>台达ASDA-A2伺服作为笔者个人推荐比较高的产品。在市场已经有不少的使用率，当然作为第一代的Smart Servo，它也能满足很多的单轴控制和多轴的协调。如今A3还有B3已经上市了，M-R这款因为产品的本身局限，在此不错过多的讲解。A2利用好PR模式，可以把PLC的程序进行简化处理，甚至把PLC直接省去。（笔者我做过几个这样的项目，都是只有触摸屏和A2伺服。）</p>
+<p>今天就给大家带来关于ASD-A2的伺服分享(Tips: B3和A3的PR都是基于A2开发的，所以学习A2是必须的)</p>
+<h1 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a><strong>知识点</strong></h1><hr>
+<blockquote>
+<p><strong><em>PLS PUU 电子齿轮比  PR DI映射 事件触发EV CAPTURE COMPARE</em></strong></p>
+</blockquote>
+<h2 id="PLS"><a href="#PLS" class="headerlink" title="PLS"></a>PLS</h2><p>PLS单位机编码器的脉冲单位，A2伺服编码器的解析度有17bit和20bit。但PLS单位都统一定位1280000PLS/rev，使用者无法更改。也就是当齿轮比设为1:1时，命令必须下达1280000脉冲，伺服马达才会转一圈。</p>
+<p>1.传统控制器是发送实体脉冲给驱动器来控制伺服马达的，若命令以PLS为单位会照成脉冲命令频率过高，以1280000PLS/每转为例，若要达到3000rpm:</p>
+<blockquote>
+<p>$$<br>脉冲命令频率 = 1280000（PLS/rev）* 3000（Rev/min）/ 60（sev/min) =  64000000 PLS/sec = 64MHz<br>$$</p>
+</blockquote>
+<p>控制器很难发送如此高频率的实体脉冲，必须藉由电子齿轮比来放大倍率，使脉冲命令的频率降低，而命令放大前的单位就是使用者单位(PUU)。</p>
+<h2 id="PUU"><a href="#PUU" class="headerlink" title="PUU"></a>PUU</h2><p><img src="http://smartservo.org/wp-content/uploads/Evernote-Camera-Roll-20160607-110158_thumb.png" alt="PUU与PLS关系框图"></p>
+<p>PR模式的位置数据，全部以用户单位PUU(Pulse of User Unit)表示。也代表上位机的位置单位与驱动器内部的位置单位的比例，既为驱动器的电子齿轮比。</p>
+<ol>
+<li><p>驱动器的位置单位(Pulse):编码器单位，每转1280000脉冲（pulse/rev)，固定不变。</p>
+</li>
+<li><p>用户单位（PUU):上位机单位，若每转为P脉冲（PUU/rev)，则齿轮比须设定为：<br>$$<br>Gear_Num(P1-44)/Gear_Den(P1-45) = 1280000/P<br>$$</p>
+</li>
+</ol>
+<h2 id="电子齿轮比"><a href="#电子齿轮比" class="headerlink" title="电子齿轮比"></a>电子齿轮比</h2><h2 id="PR"><a href="#PR" class="headerlink" title="PR"></a>PR</h2><blockquote>
+<p>PR(Procedure)程序：命令的最小单位，命令可有一个或多个程序组合而成。程序的触发有DI:CTRG，而POS0~POS5用来指定触发的程序编号。已经触发的程序执行完毕，利用自动触发下一程序，程序编号可设定，程序之间也可以设定延迟时间。</p>
+</blockquote>
+<blockquote>
+<p>PR模式下，提供电子凸轮的功能，可以由PR程序开启凸轮功能，凸轮功能脱离后，也可以回到指定PR程序。</p>
+</blockquote>
+<h2 id="事件触发EV"><a href="#事件触发EV" class="headerlink" title="事件触发EV"></a>事件触发EV</h2><h2 id="CAPTURE"><a href="#CAPTURE" class="headerlink" title="CAPTURE"></a>CAPTURE</h2><blockquote>
+<p>CAPTURE的概念是利用外部的触发信号DI7，达到瞬间抓取运动轴的位置数据，并存放到数据数组中，作为后续运动控制使用，由于抓取的动作是有硬件完成，没有软件延迟的问题，对于高速运转的运动轴也可以准确的抓取。</p>
+</blockquote>
+<blockquote>
+<p><strong><em>这个功能在运动控制器的使用情况下也成为TP探针。</em></strong></p>
+</blockquote>
+<h2 id="COMPARE"><a href="#COMPARE" class="headerlink" title="COMPARE"></a>COMPARE</h2><blockquote>
+<p>COMPARE的概念是利用运动轴的瞬时位置数据，与预先存放在数据数组中的数组做比较，待比较条件成立就立即输出一个信号DO4,作为后续运动控制使用。这个功能和CAPTURE都是采用硬件完成。</p>
+</blockquote>
+<h1 id="实战"><a href="#实战" class="headerlink" title="实战"></a><strong>实战</strong></h1><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a><strong>参考文献</strong></h1><hr>
+<p>《ASDA-A2高机能通讯型伺服驱动器应用技术手册》(20190523版本)</p>
+<p><a href="http://smartservo.org" target="_blank" rel="noopener">Smart Servo 官网</a></p>
+<p>Log:</p>
+<p>2019-10-24 发布本文</p>
 
       
     </div>
@@ -326,7 +368,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/ASD-A2/" rel="tag"># ASD-A2</a>
+            <a href="/tags/ASDA-A2/" rel="tag"># ASDA-A2</a>
           
             <a href="/tags/PR-mode/" rel="tag"># PR_mode</a>
           
@@ -478,7 +520,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#知识点"><span class="nav-number">1.</span> <span class="nav-text">知识点</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#知识点"><span class="nav-number">2.</span> <span class="nav-text">知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PLS"><span class="nav-number">2.1.</span> <span class="nav-text">PLS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PUU"><span class="nav-number">2.2.</span> <span class="nav-text">PUU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#电子齿轮比"><span class="nav-number">2.3.</span> <span class="nav-text">电子齿轮比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PR"><span class="nav-number">2.4.</span> <span class="nav-text">PR</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件触发EV"><span class="nav-number">2.5.</span> <span class="nav-text">事件触发EV</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CAPTURE"><span class="nav-number">2.6.</span> <span class="nav-text">CAPTURE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#COMPARE"><span class="nav-number">2.7.</span> <span class="nav-text">COMPARE</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实战"><span class="nav-number">3.</span> <span class="nav-text">实战</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
