@@ -238,7 +238,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/21/%E7%94%B5%E5%AD%90%E5%87%B8%E8%BD%AE%E8%99%9A%E8%BD%B4%E8%B0%83%E8%AF%95(Jog%E6%A8%A1%E5%BC%8F)/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/21/%E5%9F%BA%E4%BA%8E%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E7%BC%96%E7%A8%8B%E4%BA%A4%E4%BA%92/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Tor">
@@ -257,7 +257,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/10/21/%E7%94%B5%E5%AD%90%E5%87%B8%E8%BD%AE%E8%99%9A%E8%BD%B4%E8%B0%83%E8%AF%95(Jog%E6%A8%A1%E5%BC%8F)/" itemprop="url">电子凸轮虚轴调试(Jog模式)</a></h1>
+                <a class="post-title-link" href="/2019/10/21/%E5%9F%BA%E4%BA%8E%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E7%BC%96%E7%A8%8B%E4%BA%A4%E4%BA%92/" itemprop="url">基于状态机的编程交互</a></h1>
         
 
         <div class="post-meta">
@@ -309,154 +309,10 @@
       
         
           
-            <h1 id="DMC-JOG"><a href="#DMC-JOG" class="headerlink" title="DMC_JOG"></a><strong><em>DMC_JOG</em></strong></h1><p>我们常常在调试项目的时候会用到电子凸轮<strong><em>E-CAM</em></strong>的工艺，而<strong><em>E-CAM</em></strong>开始运行就是在<strong><em>自动模式</em></strong>下运行，其实在这调机的过程中建议添加一个点动JOG凸轮对位的过程，这样可以大大的减少不必要的浪费，还有凸轮曲线的校验。</p>
-<p>以下是一个大致的代码范例：</p>
-<hr>
-<p>我建立5个虚轴，1-4为从轴，5号为主轴。</p>
-<figure class="highlight st"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">AxisEnabel</span>[<span class="number">1</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">1</span>,<span class="type">Enable</span>:= <span class="number">1</span>,<span class="type">EnablePositive</span>:= <span class="number">1</span>,<span class="type">EnableNegative</span>:= <span class="number">1</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisEnabel</span>[<span class="number">2</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">2</span>,<span class="type">Enable</span>:= <span class="number">1</span>,<span class="type">EnablePositive</span>:= <span class="number">1</span>,<span class="type">EnableNegative</span>:= <span class="number">1</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisEnabel</span>[<span class="number">3</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">3</span>,<span class="type">Enable</span>:= <span class="number">1</span>,<span class="type">EnablePositive</span>:= <span class="number">1</span>,<span class="type">EnableNegative</span>:= <span class="number">1</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisEnabel</span>[<span class="number">4</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">4</span>,<span class="type">Enable</span>:= <span class="number">1</span>,<span class="type">EnablePositive</span>:= <span class="number">1</span>,<span class="type">EnableNegative</span>:= <span class="number">1</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisEnabel</span>[<span class="number">5</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">5</span>,<span class="type">Enable</span>:= <span class="number">1</span>,<span class="type">EnablePositive</span>:= <span class="number">1</span>,<span class="type">EnableNegative</span>:= <span class="number">1</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisHome</span>[<span class="number">1</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">1</span>,<span class="type">Execute</span>:= bHomeExe,<span class="type">Position</span>:= <span class="number">0.0</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisHome</span>[<span class="number">2</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">2</span>,<span class="type">Execute</span>:= bHomeExe,<span class="type">Position</span>:= <span class="number">0.0</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisHome</span>[<span class="number">3</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">3</span>,<span class="type">Execute</span>:= bHomeExe,<span class="type">Position</span>:= <span class="number">0.0</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisHome</span>[<span class="number">4</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">4</span>,<span class="type">Execute</span>:= bHomeExe,<span class="type">Position</span>:= <span class="number">0.0</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisHome</span>[<span class="number">5</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">5</span>,<span class="type">Execute</span>:= bHomeExe,<span class="type">Position</span>:= <span class="number">0.0</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisActPos</span>[<span class="number">1</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">1</span>,<span class="type">Enable</span>:= <span class="number">1</span>);</span><br><span class="line"><span class="type">AxisActPos</span>[<span class="number">2</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">2</span>,<span class="type">Enable</span>:= <span class="number">1</span>);</span><br><span class="line"><span class="type">AxisActPos</span>[<span class="number">3</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">3</span>,<span class="type">Enable</span>:= <span class="number">1</span>);</span><br><span class="line"><span class="type">AxisActPos</span>[<span class="number">4</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">4</span>,<span class="type">Enable</span>:= <span class="number">1</span>);</span><br><span class="line"><span class="type">AxisActPos</span>[<span class="number">5</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">4</span>,<span class="type">Enable</span>:= <span class="number">1</span>);</span><br><span class="line"><span class="type">AxisStop</span>[<span class="number">1</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">1</span>,<span class="type">Deceleration</span>:= <span class="number">2000</span>,<span class="type">Jerk</span>:= <span class="number">5000</span>);</span><br><span class="line"><span class="type">AxisStop</span>[<span class="number">2</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">2</span>,<span class="type">Deceleration</span>:= <span class="number">2000</span>,<span class="type">Jerk</span>:= <span class="number">5000</span>);</span><br><span class="line"><span class="type">AxisStop</span>[<span class="number">3</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">3</span>,<span class="type">Deceleration</span>:= <span class="number">2000</span>,<span class="type">Jerk</span>:= <span class="number">5000</span>);</span><br><span class="line"><span class="type">AxisStop</span>[<span class="number">4</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">4</span>,<span class="type">Deceleration</span>:= <span class="number">2000</span>,<span class="type">Jerk</span>:= <span class="number">5000</span>);</span><br><span class="line"><span class="type">AxisStop</span>[<span class="number">5</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">5</span>,<span class="type">Deceleration</span>:= <span class="number">2000</span>,<span class="type">Jerk</span>:= <span class="number">5000</span>);</span><br><span class="line"><span class="type">AxisReset</span>[<span class="number">1</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">1</span>,<span class="type">Execute</span>:= bResetExe);</span><br><span class="line"><span class="type">AxisReset</span>[<span class="number">2</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">2</span>,<span class="type">Execute</span>:= bResetExe);</span><br><span class="line"><span class="type">AxisReset</span>[<span class="number">3</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">3</span>,<span class="type">Execute</span>:= bResetExe);</span><br><span class="line"><span class="type">AxisReset</span>[<span class="number">4</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">4</span>,<span class="type">Execute</span>:= bResetExe);</span><br><span class="line"><span class="type">AxisReset</span>[<span class="number">5</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">5</span>,<span class="type">Execute</span>:= bResetExe);</span><br><span class="line">rAxisActPos[<span class="number">1</span>] := <span class="type">LREAL_TO_REAL</span>(<span class="type">In</span>:= <span class="type">MODABS</span>(<span class="type">In1</span>:= <span class="type">Axis</span>[<span class="number">1</span>].<span class="type">ActPos</span>,<span class="type">In2</span>:= <span class="number">36000.0</span>)) ;</span><br><span class="line">rAxisActPos[<span class="number">2</span>] := <span class="type">LREAL_TO_REAL</span>(<span class="type">In</span>:= <span class="type">MODABS</span>(<span class="type">In1</span>:= <span class="type">Axis</span>[<span class="number">2</span>].<span class="type">ActPos</span>,<span class="type">In2</span>:= <span class="number">36000.0</span>)) ;</span><br><span class="line">rAxisActPos[<span class="number">3</span>] := <span class="type">LREAL_TO_REAL</span>(<span class="type">In</span>:= <span class="type">MODABS</span>(<span class="type">In1</span>:= <span class="type">Axis</span>[<span class="number">3</span>].<span class="type">ActPos</span>,<span class="type">In2</span>:= <span class="number">36000.0</span>)) ;</span><br><span class="line">rAxisActPos[<span class="number">4</span>] := <span class="type">LREAL_TO_REAL</span>(<span class="type">In</span>:= <span class="type">MODABS</span>(<span class="type">In1</span>:= <span class="type">Axis</span>[<span class="number">4</span>].<span class="type">ActPos</span>,<span class="type">In2</span>:= <span class="number">36000.0</span>)) ;</span><br><span class="line">rAxisActPos[<span class="number">5</span>] := <span class="type">LREAL_TO_REAL</span>(<span class="type">In</span>:= <span class="type">MODABS</span>(<span class="type">In1</span>:= <span class="type">Axis</span>[<span class="number">5</span>].<span class="type">ActPos</span>,<span class="type">In2</span>:= <span class="number">36000.0</span>)) ;</span><br><span class="line"><span class="type">AxisMasterJog</span>(<span class="type">Axis</span>:= <span class="number">5</span>,<span class="type">JogForward</span>:= bJogF,<span class="type">JogBackward</span>:= bJogB,<span class="type">Velocity</span>:= <span class="type">Vel</span>,<span class="type">Acceleration</span>:= <span class="number">1000</span>,<span class="type">Deceleration</span>:= <span class="number">100</span>,<span class="type">Jerk</span>:= <span class="number">2000</span>);</span><br><span class="line"><span class="type">IF</span> bCamIn <span class="type">THEN</span></span><br><span class="line">	<span class="type">FOR</span> <span class="type">UsiAxisNumber</span> := <span class="number">1</span> <span class="type">TO</span> <span class="number">4</span> <span class="type">BY</span> <span class="number">1</span> <span class="type">DO</span> </span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Master</span>             := <span class="number">5</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Periodic</span>           := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">MasterAbsolute</span>     := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">SlaveAbsolute</span>      := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">MasterOffset</span>       := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">SlaveOffset</span>        := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">MasterScaling</span>      := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">SlaveScaling</span>       := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">ActivationPosition</span> := <span class="number">0.0</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">ActivationMode</span>     := <span class="number">0</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">StartMode</span>          := <span class="number">0</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Velocity</span>           := <span class="number">500</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Acceleration</span>       := <span class="number">1000</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Deceleration</span>       := <span class="number">1000</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Jerk</span>               := <span class="number">2000</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">BufferMode</span>         := mcAborting ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">MasterValueSource</span>  := mcActualValue ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Slave</span>              := <span class="type">UsiAxisNumber</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">CamTable</span>           := <span class="type">UsiAxisNumber</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Execute</span>            := <span class="type">TRUE</span> ;</span><br><span class="line">	<span class="type">END_FOR</span>;</span><br><span class="line"><span class="type">ELSE</span></span><br><span class="line">	<span class="type">FOR</span> <span class="type">UsiAxisNumber</span> := <span class="number">1</span> <span class="type">TO</span> <span class="number">4</span> <span class="type">BY</span> <span class="number">1</span> <span class="type">DO</span> </span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Execute</span>            := <span class="type">FALSE</span> ;</span><br><span class="line">	<span class="type">END_FOR</span>;	</span><br><span class="line"><span class="type">END_IF</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">AxisCamIn</span>[<span class="number">1</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>);</span><br><span class="line"><span class="type">AxisCamIn</span>[<span class="number">2</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>);</span><br><span class="line"><span class="type">AxisCamIn</span>[<span class="number">3</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>);</span><br><span class="line"><span class="type">AxisCamIn</span>[<span class="number">4</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>);</span><br></pre></td></tr></table></figure>
+            <h1 id="g-i-AxisCtrlWord-UsiAxisNumber"><a href="#g-i-AxisCtrlWord-UsiAxisNumber" class="headerlink" title="g_i_AxisCtrlWord[UsiAxisNumber]"></a><strong><em>g_i_AxisCtrlWord[UsiAxisNumber]</em></strong></h1><figure class="highlight st"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">CASE</span> g_i_AxisCtrlWord[<span class="type">UsiAxisNumber</span>] <span class="type">OF</span></span><br><span class="line">	<span class="number">1</span>: //点进</span><br><span class="line">	<span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uDMC_Jog.<span class="type">JogBackward</span>      := <span class="type">FALSE</span> ;	</span><br><span class="line">	<span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uDMC_Jog.<span class="type">JogForward</span>       := <span class="type">TRUE</span> ;</span><br><span class="line">	<span class="number">2</span>: //点退</span><br><span class="line">	<span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uDMC_Jog.<span class="type">JogForward</span>       := <span class="type">FALSE</span> ;	</span><br><span class="line">	<span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uDMC_Jog.<span class="type">JogBackward</span>      := <span class="type">TRUE</span> ;	</span><br><span class="line">	<span class="number">3</span>://回零</span><br><span class="line">	g_b_AxisGoHomeEnd[<span class="type">UsiAxisNumber</span>]                                := <span class="type">FALSE</span>;</span><br><span class="line">	<span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uMC_Home.<span class="type">Execute</span>          := <span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uMC_Power.<span class="type">Status</span> ;</span><br><span class="line">	<span class="type">IF</span> <span class="type">EDGEPOS</span>(<span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uMC_Home.<span class="type">Done</span>) <span class="type">THEN</span></span><br><span class="line">		g_b_AxisGoHomeEnd[<span class="type">UsiAxisNumber</span>]                            := <span class="type">TRUE</span>;</span><br><span class="line">		<span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uMC_Home.<span class="type">Execute</span>      := <span class="type">FALSE</span> ;</span><br><span class="line">		g_i_AxisCtrlWord[<span class="type">UsiAxisNumber</span>]                             := <span class="number">0</span>;</span><br><span class="line">	<span class="type">END_IF</span>;</span><br><span class="line">	<span class="number">4</span>: //单进</span><br><span class="line">	<span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uMC_MoveRelative.<span class="type">Distance</span> := <span class="type">REAL_TO_LREAL</span>(<span class="type">In</span>:= g_r_AxisRelPos[<span class="number">1</span>]);</span><br><span class="line">	<span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uMC_MoveRelative.<span class="type">Execute</span>  := <span class="type">TRUE</span> ;</span><br><span class="line">	<span class="type">IF</span> <span class="type">EDGEPOS</span>(<span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uMC_MoveRelative.<span class="type">Done</span>) <span class="type">THEN</span></span><br><span class="line">		g_i_AxisCtrlWord[<span class="type">UsiAxisNumber</span>]                                 := <span class="number">0</span>;</span><br><span class="line">	<span class="type">END_IF</span>;</span><br><span class="line"><span class="type">ELSE</span></span><br><span class="line">	<span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uDMC_Jog.<span class="type">JogForward</span>       := <span class="type">FALSE</span> ;</span><br><span class="line">	<span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uDMC_Jog.<span class="type">JogBackward</span>      := <span class="type">FALSE</span> ;</span><br><span class="line">	<span class="type">ActionAxisBasicControl</span>[<span class="type">UsiAxisNumber</span>].uMC_MoveRelative.<span class="type">Execute</span>  := <span class="type">FALSE</span> ;		</span><br><span class="line"><span class="type">END_CASE</span>;</span><br></pre></td></tr></table></figure>
 
-<p>通过<strong><em>DMC_JOG</em></strong> 指令的调用，我们就可以看的出在从轴同步的时候，对应的凸轮位置关系，从而优化凸轮曲线。</p>
-<blockquote>
-<p><strong><em>这种方式，其实用实轴也是可以的。实际轴包括：伺服驱动器，变频器，编码器。</em></strong></p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/21/%E7%94%B5%E5%B7%A5%E5%AD%A6-Part-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Tor">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TomatoTor">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/10/21/%E7%94%B5%E5%B7%A5%E5%AD%A6-Part-1/" itemprop="url">电工学 Part-1</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-21T11:05:49+08:00">
-                2019-10-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="直流电路"><a href="#直流电路" class="headerlink" title="直流电路"></a><strong><em>直流电路</em></strong></h1><h2 id="电路的基本物理量"><a href="#电路的基本物理量" class="headerlink" title="电路的基本物理量"></a>电路的基本物理量</h2><ul>
-<li>电流 - I</li>
-<li>电压 - U</li>
-<li>电动势 - E</li>
-<li>电位 - V</li>
-<li>电功率 - W</li>
-</ul>
-<h3 id="电流"><a href="#电流" class="headerlink" title="电流"></a>电流</h3><blockquote>
-<p>i = dq / dt</p>
-<p>I = q / t  （直流）</p>
-</blockquote>
-<p>如果电流不随时间而变化，即 dq /dt = 常数，则这种电流陈伟恒定电流，简称直流，简写作<strong><em>DC (Direct Current）</em></strong>。</p>
-<p>如果电路的大小和方向都随时间变化，则称为交变电流，简称交流，简写作<strong><em>AC (Alternating Current)</em></strong> 。</p>
-<h3 id="电压"><a href="#电压" class="headerlink" title="电压"></a>电压</h3><p>$$<br>U = I * R<br>$$</p>
-<h3 id="电动势"><a href="#电动势" class="headerlink" title="电动势"></a>电动势</h3><p>$$<br>Eab = Wab / q<br>$$</p>
-<h3 id="电位"><a href="#电位" class="headerlink" title="电位"></a>电位</h3><p>$$<br>Va = Wao / q = Fdl / dq<br>$$</p>
-<h3 id="电功率"><a href="#电功率" class="headerlink" title="电功率"></a>电功率</h3><p>$$<br>P = W /t = I * U<br>$$</p>
-<h2 id="电路模型"><a href="#电路模型" class="headerlink" title="电路模型"></a>电路模型</h2><h3 id="理想电流元件"><a href="#理想电流元件" class="headerlink" title="理想电流元件"></a>理想电流元件</h3><h4 id="电阻元件"><a href="#电阻元件" class="headerlink" title="电阻元件"></a>电阻元件</h4><h4 id="电感元件"><a href="#电感元件" class="headerlink" title="电感元件"></a>电感元件</h4><h4 id="电容元件"><a href="#电容元件" class="headerlink" title="电容元件"></a>电容元件</h4><h4 id="理想电压源"><a href="#理想电压源" class="headerlink" title="理想电压源"></a>理想电压源</h4><h4 id="理想电流源"><a href="#理想电流源" class="headerlink" title="理想电流源"></a>理想电流源</h4><h3 id="实际电源模型"><a href="#实际电源模型" class="headerlink" title="实际电源模型"></a>实际电源模型</h3><h4 id="电压源"><a href="#电压源" class="headerlink" title="电压源"></a>电压源</h4><h4 id="电流源"><a href="#电流源" class="headerlink" title="电流源"></a>电流源</h4><p>Log:</p>
-<p>2019.10.20 Start</p>
+<p>利用两个变量的组合配合<strong><em>FB_AxisBasicControl</em></strong>建成了一个<strong><em>Fast</em></strong>模板。只需要在触摸屏上建立一个<strong>下拉选单</strong>控件对应地址<strong><em>UsiAxisNumber</em></strong> ，另外的FrameControl对里面<strong><em>g_i_AxisCtrlWord</em></strong> 的对于数据。</p>
+<p><img src="https://s2.ax1x.com/2019/10/15/K9vlRJ.png" alt="FrameControl"></p>
 
           
         
@@ -810,6 +666,273 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/21/%E7%94%B5%E5%AD%90%E5%87%B8%E8%BD%AE%E8%99%9A%E8%BD%B4%E8%B0%83%E8%AF%95(Jog%E6%A8%A1%E5%BC%8F)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TomatoTor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/21/%E7%94%B5%E5%AD%90%E5%87%B8%E8%BD%AE%E8%99%9A%E8%BD%B4%E8%B0%83%E8%AF%95(Jog%E6%A8%A1%E5%BC%8F)/" itemprop="url">电子凸轮虚轴调试(Jog模式)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-21T11:05:49+08:00">
+                2019-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="DMC-JOG"><a href="#DMC-JOG" class="headerlink" title="DMC_JOG"></a><strong><em>DMC_JOG</em></strong></h1><p>我们常常在调试项目的时候会用到电子凸轮<strong><em>E-CAM</em></strong>的工艺，而<strong><em>E-CAM</em></strong>开始运行就是在<strong><em>自动模式</em></strong>下运行，其实在这调机的过程中建议添加一个点动JOG凸轮对位的过程，这样可以大大的减少不必要的浪费，还有凸轮曲线的校验。</p>
+<p>以下是一个大致的代码范例：</p>
+<hr>
+<p>我建立5个虚轴，1-4为从轴，5号为主轴。</p>
+<figure class="highlight st"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">AxisEnabel</span>[<span class="number">1</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">1</span>,<span class="type">Enable</span>:= <span class="number">1</span>,<span class="type">EnablePositive</span>:= <span class="number">1</span>,<span class="type">EnableNegative</span>:= <span class="number">1</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisEnabel</span>[<span class="number">2</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">2</span>,<span class="type">Enable</span>:= <span class="number">1</span>,<span class="type">EnablePositive</span>:= <span class="number">1</span>,<span class="type">EnableNegative</span>:= <span class="number">1</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisEnabel</span>[<span class="number">3</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">3</span>,<span class="type">Enable</span>:= <span class="number">1</span>,<span class="type">EnablePositive</span>:= <span class="number">1</span>,<span class="type">EnableNegative</span>:= <span class="number">1</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisEnabel</span>[<span class="number">4</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">4</span>,<span class="type">Enable</span>:= <span class="number">1</span>,<span class="type">EnablePositive</span>:= <span class="number">1</span>,<span class="type">EnableNegative</span>:= <span class="number">1</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisEnabel</span>[<span class="number">5</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">5</span>,<span class="type">Enable</span>:= <span class="number">1</span>,<span class="type">EnablePositive</span>:= <span class="number">1</span>,<span class="type">EnableNegative</span>:= <span class="number">1</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisHome</span>[<span class="number">1</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">1</span>,<span class="type">Execute</span>:= bHomeExe,<span class="type">Position</span>:= <span class="number">0.0</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisHome</span>[<span class="number">2</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">2</span>,<span class="type">Execute</span>:= bHomeExe,<span class="type">Position</span>:= <span class="number">0.0</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisHome</span>[<span class="number">3</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">3</span>,<span class="type">Execute</span>:= bHomeExe,<span class="type">Position</span>:= <span class="number">0.0</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisHome</span>[<span class="number">4</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">4</span>,<span class="type">Execute</span>:= bHomeExe,<span class="type">Position</span>:= <span class="number">0.0</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisHome</span>[<span class="number">5</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">5</span>,<span class="type">Execute</span>:= bHomeExe,<span class="type">Position</span>:= <span class="number">0.0</span>,<span class="type">BufferMode</span>:= <span class="number">0</span>);</span><br><span class="line"><span class="type">AxisActPos</span>[<span class="number">1</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">1</span>,<span class="type">Enable</span>:= <span class="number">1</span>);</span><br><span class="line"><span class="type">AxisActPos</span>[<span class="number">2</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">2</span>,<span class="type">Enable</span>:= <span class="number">1</span>);</span><br><span class="line"><span class="type">AxisActPos</span>[<span class="number">3</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">3</span>,<span class="type">Enable</span>:= <span class="number">1</span>);</span><br><span class="line"><span class="type">AxisActPos</span>[<span class="number">4</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">4</span>,<span class="type">Enable</span>:= <span class="number">1</span>);</span><br><span class="line"><span class="type">AxisActPos</span>[<span class="number">5</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">4</span>,<span class="type">Enable</span>:= <span class="number">1</span>);</span><br><span class="line"><span class="type">AxisStop</span>[<span class="number">1</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">1</span>,<span class="type">Deceleration</span>:= <span class="number">2000</span>,<span class="type">Jerk</span>:= <span class="number">5000</span>);</span><br><span class="line"><span class="type">AxisStop</span>[<span class="number">2</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">2</span>,<span class="type">Deceleration</span>:= <span class="number">2000</span>,<span class="type">Jerk</span>:= <span class="number">5000</span>);</span><br><span class="line"><span class="type">AxisStop</span>[<span class="number">3</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">3</span>,<span class="type">Deceleration</span>:= <span class="number">2000</span>,<span class="type">Jerk</span>:= <span class="number">5000</span>);</span><br><span class="line"><span class="type">AxisStop</span>[<span class="number">4</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">4</span>,<span class="type">Deceleration</span>:= <span class="number">2000</span>,<span class="type">Jerk</span>:= <span class="number">5000</span>);</span><br><span class="line"><span class="type">AxisStop</span>[<span class="number">5</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">5</span>,<span class="type">Deceleration</span>:= <span class="number">2000</span>,<span class="type">Jerk</span>:= <span class="number">5000</span>);</span><br><span class="line"><span class="type">AxisReset</span>[<span class="number">1</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">1</span>,<span class="type">Execute</span>:= bResetExe);</span><br><span class="line"><span class="type">AxisReset</span>[<span class="number">2</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">2</span>,<span class="type">Execute</span>:= bResetExe);</span><br><span class="line"><span class="type">AxisReset</span>[<span class="number">3</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">3</span>,<span class="type">Execute</span>:= bResetExe);</span><br><span class="line"><span class="type">AxisReset</span>[<span class="number">4</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">4</span>,<span class="type">Execute</span>:= bResetExe);</span><br><span class="line"><span class="type">AxisReset</span>[<span class="number">5</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>,<span class="type">Axis</span>:= <span class="number">5</span>,<span class="type">Execute</span>:= bResetExe);</span><br><span class="line">rAxisActPos[<span class="number">1</span>] := <span class="type">LREAL_TO_REAL</span>(<span class="type">In</span>:= <span class="type">MODABS</span>(<span class="type">In1</span>:= <span class="type">Axis</span>[<span class="number">1</span>].<span class="type">ActPos</span>,<span class="type">In2</span>:= <span class="number">36000.0</span>)) ;</span><br><span class="line">rAxisActPos[<span class="number">2</span>] := <span class="type">LREAL_TO_REAL</span>(<span class="type">In</span>:= <span class="type">MODABS</span>(<span class="type">In1</span>:= <span class="type">Axis</span>[<span class="number">2</span>].<span class="type">ActPos</span>,<span class="type">In2</span>:= <span class="number">36000.0</span>)) ;</span><br><span class="line">rAxisActPos[<span class="number">3</span>] := <span class="type">LREAL_TO_REAL</span>(<span class="type">In</span>:= <span class="type">MODABS</span>(<span class="type">In1</span>:= <span class="type">Axis</span>[<span class="number">3</span>].<span class="type">ActPos</span>,<span class="type">In2</span>:= <span class="number">36000.0</span>)) ;</span><br><span class="line">rAxisActPos[<span class="number">4</span>] := <span class="type">LREAL_TO_REAL</span>(<span class="type">In</span>:= <span class="type">MODABS</span>(<span class="type">In1</span>:= <span class="type">Axis</span>[<span class="number">4</span>].<span class="type">ActPos</span>,<span class="type">In2</span>:= <span class="number">36000.0</span>)) ;</span><br><span class="line">rAxisActPos[<span class="number">5</span>] := <span class="type">LREAL_TO_REAL</span>(<span class="type">In</span>:= <span class="type">MODABS</span>(<span class="type">In1</span>:= <span class="type">Axis</span>[<span class="number">5</span>].<span class="type">ActPos</span>,<span class="type">In2</span>:= <span class="number">36000.0</span>)) ;</span><br><span class="line"><span class="type">AxisMasterJog</span>(<span class="type">Axis</span>:= <span class="number">5</span>,<span class="type">JogForward</span>:= bJogF,<span class="type">JogBackward</span>:= bJogB,<span class="type">Velocity</span>:= <span class="type">Vel</span>,<span class="type">Acceleration</span>:= <span class="number">1000</span>,<span class="type">Deceleration</span>:= <span class="number">100</span>,<span class="type">Jerk</span>:= <span class="number">2000</span>);</span><br><span class="line"><span class="type">IF</span> bCamIn <span class="type">THEN</span></span><br><span class="line">	<span class="type">FOR</span> <span class="type">UsiAxisNumber</span> := <span class="number">1</span> <span class="type">TO</span> <span class="number">4</span> <span class="type">BY</span> <span class="number">1</span> <span class="type">DO</span> </span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Master</span>             := <span class="number">5</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Periodic</span>           := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">MasterAbsolute</span>     := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">SlaveAbsolute</span>      := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">MasterOffset</span>       := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">SlaveOffset</span>        := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">MasterScaling</span>      := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">SlaveScaling</span>       := <span class="number">1</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">ActivationPosition</span> := <span class="number">0.0</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">ActivationMode</span>     := <span class="number">0</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">StartMode</span>          := <span class="number">0</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Velocity</span>           := <span class="number">500</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Acceleration</span>       := <span class="number">1000</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Deceleration</span>       := <span class="number">1000</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Jerk</span>               := <span class="number">2000</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">BufferMode</span>         := mcAborting ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">MasterValueSource</span>  := mcActualValue ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Slave</span>              := <span class="type">UsiAxisNumber</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">CamTable</span>           := <span class="type">UsiAxisNumber</span> ;</span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Execute</span>            := <span class="type">TRUE</span> ;</span><br><span class="line">	<span class="type">END_FOR</span>;</span><br><span class="line"><span class="type">ELSE</span></span><br><span class="line">	<span class="type">FOR</span> <span class="type">UsiAxisNumber</span> := <span class="number">1</span> <span class="type">TO</span> <span class="number">4</span> <span class="type">BY</span> <span class="number">1</span> <span class="type">DO</span> </span><br><span class="line">		<span class="type">AxisCamIn</span>[<span class="type">UsiAxisNumber</span>].<span class="type">Execute</span>            := <span class="type">FALSE</span> ;</span><br><span class="line">	<span class="type">END_FOR</span>;	</span><br><span class="line"><span class="type">END_IF</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">AxisCamIn</span>[<span class="number">1</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>);</span><br><span class="line"><span class="type">AxisCamIn</span>[<span class="number">2</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>);</span><br><span class="line"><span class="type">AxisCamIn</span>[<span class="number">3</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>);</span><br><span class="line"><span class="type">AxisCamIn</span>[<span class="number">4</span>](<span class="type">EN</span>:= <span class="type">TRUE</span>);</span><br></pre></td></tr></table></figure>
+
+<p>通过<strong><em>DMC_JOG</em></strong> 指令的调用，我们就可以看的出在从轴同步的时候，对应的凸轮位置关系，从而优化凸轮曲线。</p>
+<blockquote>
+<p><strong><em>这种方式，其实用实轴也是可以的。实际轴包括：伺服驱动器，变频器，编码器。</em></strong></p>
+</blockquote>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/21/%E7%94%B5%E5%B7%A5%E5%AD%A6-Part-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Tor">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TomatoTor">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/21/%E7%94%B5%E5%B7%A5%E5%AD%A6-Part-1/" itemprop="url">电工学 Part-1</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-21T11:05:49+08:00">
+                2019-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="直流电路"><a href="#直流电路" class="headerlink" title="直流电路"></a><strong><em>直流电路</em></strong></h1><h2 id="电路的基本物理量"><a href="#电路的基本物理量" class="headerlink" title="电路的基本物理量"></a>电路的基本物理量</h2><ul>
+<li>电流 - I</li>
+<li>电压 - U</li>
+<li>电动势 - E</li>
+<li>电位 - V</li>
+<li>电功率 - W</li>
+</ul>
+<h3 id="电流"><a href="#电流" class="headerlink" title="电流"></a>电流</h3><blockquote>
+<p>i = dq / dt</p>
+<p>I = q / t  （直流）</p>
+</blockquote>
+<p>如果电流不随时间而变化，即 dq /dt = 常数，则这种电流陈伟恒定电流，简称直流，简写作<strong><em>DC (Direct Current）</em></strong>。</p>
+<p>如果电路的大小和方向都随时间变化，则称为交变电流，简称交流，简写作<strong><em>AC (Alternating Current)</em></strong> 。</p>
+<h3 id="电压"><a href="#电压" class="headerlink" title="电压"></a>电压</h3><p>$$<br>U = I * R<br>$$</p>
+<h3 id="电动势"><a href="#电动势" class="headerlink" title="电动势"></a>电动势</h3><p>$$<br>Eab = Wab / q<br>$$</p>
+<h3 id="电位"><a href="#电位" class="headerlink" title="电位"></a>电位</h3><p>$$<br>Va = Wao / q = Fdl / dq<br>$$</p>
+<h3 id="电功率"><a href="#电功率" class="headerlink" title="电功率"></a>电功率</h3><p>$$<br>P = W /t = I * U<br>$$</p>
+<h2 id="电路模型"><a href="#电路模型" class="headerlink" title="电路模型"></a>电路模型</h2><h3 id="理想电流元件"><a href="#理想电流元件" class="headerlink" title="理想电流元件"></a>理想电流元件</h3><h4 id="电阻元件"><a href="#电阻元件" class="headerlink" title="电阻元件"></a>电阻元件</h4><h4 id="电感元件"><a href="#电感元件" class="headerlink" title="电感元件"></a>电感元件</h4><h4 id="电容元件"><a href="#电容元件" class="headerlink" title="电容元件"></a>电容元件</h4><h4 id="理想电压源"><a href="#理想电压源" class="headerlink" title="理想电压源"></a>理想电压源</h4><h4 id="理想电流源"><a href="#理想电流源" class="headerlink" title="理想电流源"></a>理想电流源</h4><h3 id="实际电源模型"><a href="#实际电源模型" class="headerlink" title="实际电源模型"></a>实际电源模型</h3><h4 id="电压源"><a href="#电压源" class="headerlink" title="电压源"></a>电压源</h4><h4 id="电流源"><a href="#电流源" class="headerlink" title="电流源"></a>电流源</h4><p>Log:</p>
+<p>2019.10.20 Start</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/21/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -983,7 +1106,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
